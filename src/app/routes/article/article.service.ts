@@ -63,6 +63,13 @@ const buildFindAllQuery = (query: any, id: number | undefined) => {
     });
   }
 
+  if (typeof query.search === 'string' && query.search.trim() !== '') {
+    const search = query.search.trim();
+    queries.push({
+      OR: [{ title: { contains: search } }],
+    });
+  }
+
   return queries;
 };
 
